@@ -3,117 +3,69 @@
 
 
 
-    <!-- WELCOME SECTION -->
-    <section id="welcome">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-6 col-sm-offset-3">
-            <h2>Welcome to Rock Theme</h2>
-            <img src="images/divider-purple.png" alt="divider" />
-          </div>
-          <!-- end diver col -->
-        </div>
-        <!-- end diver row -->
-        <div class="row facilities">
-          <div class="col-sm-3">
-            <a href="#">
-              <img src="images/makeup.png" alt="makeup" />Hair &amp; Makeup
+<div class="container">
+        <!-- blog section -->
+      <div class="row">
+        <div class="col-sm-12 col-md-8 blog-main">
+
+          <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+
+          <div class="blog-post" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+            <h2 class="blog-post-title">
+              <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+                <?php the_title(); ?>
+              </a>
+            </h2>
+            <p class="blog-post-meta"><?php echo get_the_date('F, j, Y'); ?><a href="#"> by <?php the_author(); ?></a>
+
+              <i class="fa fa-tag"></i>
+              <?php the_tags(); ?><br>
+
+              <i class="fa fa-folder-open"></i>
+              <?php _e('Category: '); ?>
+              <?php the_category(', '); ?>
+            </p>
+
+            <?php the_post_thumbnail(); ?>
+            <?php the_excerpt(); ?>
+
+            <a href="<?php echo get_permalink(); ?>">
+              <?php _e('Read more...'); ?>
             </a>
-          </div>
-          <div class="col-sm-3">
-            <a href="#">
-              <img src="images/candles.png" alt="spa facilies" />Spa Facilities
-            </a>
-          </div>
-          <div class="col-sm-3">
-            <a href="#">
-              <img src="images/lake.png" alt="lakeside retreat" />Lakeside Retreat
-            </a>
-          </div>
-          <div class="col-sm-3">
-            <a href="#">
-              <img src="images/pool.png" alt="All Our Facilities" />All Our Facilities
-            </a>
-          </div>
-        </div>
 
-      </div>
-      <!-- end diveder container -->
-    </section>
+          </div><!-- /.blog-post -->
+
+          <?php endwhile; else : ?>
+            <p><?php _e( 'Sorry, no posts matched your criteria.' ); ?></p>
+          <?php endif; ?>
+
+          <nav>
+            <ul class="pager">
+              <li><?php next_posts_link('Older Posts'); ?></li>
+              <li><?php previous_posts_link('Newer Posts'); ?></li>
+            </ul>
+          </nav>
+        </div><!-- /.blog-main -->
 
 
-    <!-- LATEST OFFERS -->
-    <section id="latest-offers">
-      <div class="container">
-        <div class="row margin-bottom">
-          <div class="col-sm-6 col-sm-offset-3">
-            <h2>Latest Offers</h2>
-            <img src="images/divider-silver.png" alt="divider" />
-          </div>
-          <!-- end diver col -->
-        </div>
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="row">
-              <div class="col-sm-4">
-                <div class="offer">
-                  <span>$60</span>
-                  <h3>FAMILY<br>OFFER</h3>
-                  <p>
-                    Family Pool
-                  </p>
-                  <p>
-                    Great Day Out
-                  </p>
-                </div>
-              </div>
+        <!-- sidebar section -->
+        <div class="col-sm-12 col-md-3 col-md-offset-1 blog-sidebar">
+          <?php get_sidebar(); ?>
+        </div><!-- /.blog-sidebar -->
 
-              <div class="col-sm-4">
-                <div class="offer">
-                  <span>$120</span>
-                  <h3>FOR THE<br>BRIDE</h3>
-                  <p>
-                    Hair &amp; Makeup
-                  </p>
-                  <p>
-                    Full Pamper Package
-                  </p>
-                </div>
-              </div>
+      </div><!-- /.row -->
 
-              <div class="col-sm-4">
-                <div class="offer">
-                  <span>$90</span>
-                  <h3>WEEKEND<br>Pass</h3>
-                  <p>
-                    Modern Facilities
-                  </p>
-                  <p>
-                    Perfect Gift
-                  </p>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- container end -->
-    </section>
+    </div><!-- /.container -->
 
 
-    <!-- SHOPONLINE SECTION  -->
-    <section id="shop-online">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-6 col-sm-offset-3 text-center">
-            <h2>Shop Online</h2>
-            <img src="images/divider-purple.png" alt="divider" />
-            <a href="#" class="btn btn-default" role="button">Shop Here</a>
-          </div>
-        </div>
-      </div>
-    </section>
+
+
+
+
+
+
+
+
 
 
 <?php get_footer(); ?>

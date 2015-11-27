@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-sm-6 col-sm-offset-3 text-center margin-bottom">
         <h2>Keep in touch</h2>
-        <img src="images/divider-silver.png" alt="divider" />
+        <img src="<?php echo esc_url(get_template_directory_uri()); ?>/images/divider-silver.png" alt="divider" />
       </div>
     </div>
 
@@ -17,12 +17,14 @@
         </address>
       </div>
       <div class="col-sm-4">
-        <ul>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a href="">Latest News</a></li>
-        </ul>
+        <?php
+            wp_nav_menu( array(
+                'menu'              => 'footer',
+                'container'         => 'ul',
+                'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
+                'walker'            => new wp_bootstrap_navwalker())
+            );
+        ?>
       </div>
       <div class="col-sm-4">
         <p>
@@ -41,17 +43,14 @@
   <div class="container-fluid" id="copy">
     <div class="col-sm-12">
       <p>
-        &copy; 2015 Rock Theme
+        &copy; <?php echo date('Y'); ?> Rock Theme
       </p>
     </div>
   </div>
 
 </footer>
 
+<?php wp_footer(); ?>
 
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
